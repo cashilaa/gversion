@@ -45,10 +45,44 @@ class CVProcessor:
         else:
             print(f"Failed to save: {filename}")
     
+    def process_all_existing(self):
+        """Process all existing PDF files in the Drive folder"""
+        try:
+            query = f"'{config.DRIVE_FOLDER_ID}' in parents and mimeType='application/pdf'"
+            
+            results = self.drive_monitor.drive_service.files().list(
+                q=query,
+                fields="files(id, name, modifiedTime, size)"
+            ).execute()
+            
+            files = results.get('files', [])
+            if files:
+                print(f"Processing {len(files)} existing files...")
+                
+                for file_info in files:
+                    filename = file_info['name']
+                    
+                    # Check for duplicates
+                    if self.sheets_manager.check_duplicate(filename):
+                        continue
+                    
+                    self.process_cv(file_info)
+                
+                print("Existing files processed")
+            else:
+                print("No existing files found")
+                
+        except Exception as e:
+            print(f"Error processing existing files: {e}")
+    
     def run(self):
         """Main processing loop"""
         print("CV Processor started...")
-        print(f"Monitoring Drive folder every {config.POLL_INTERVAL} seconds")
+        
+        # Process existing files first
+        self.process_all_existing()
+        
+        print(f"Now monitoring Drive folder every {config.POLL_INTERVAL} seconds")
         
         while True:
             try:

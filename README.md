@@ -40,10 +40,10 @@ Edit `.env` file:
 - `SPREADSHEET_ID`: Target Google Sheet ID
 - `POLL_INTERVAL`: Check interval in seconds
 
-## Testing
+## Run
 
 ```bash
-python test_processor.py
+python main.py
 ```
 
 ## Output Format
