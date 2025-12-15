@@ -4,12 +4,12 @@ Automatically processes CV/Resume PDFs from Google Drive and extracts contact in
 
 ## Features
 
-- 📁 Monitors Google Drive folder for new PDFs
-- 📄 Extracts text from PDF files
-- 🔍 Identifies name, email, and phone number
-- 📊 Saves data to Google Sheets
-- 🔄 Avoids duplicate processing
-- ⚠️ Flags entries needing manual review
+- Monitors Google Drive folder for new PDFs
+- Extracts text from PDF files
+- Identifies name, email, and phone number
+- Saves data to Google Sheets
+- Avoids duplicate processing
+- Flags entries needing manual review
 
 ## Setup
 
