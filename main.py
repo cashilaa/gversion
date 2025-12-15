@@ -35,7 +35,7 @@ class CVProcessor:
             return
         
         # Extract fields
-        extracted_data = self.pdf_extractor.extract_fields(text)
+        extracted_data = self.pdf_extractor.extract_fields(text, filename)
         
         # Save to sheets
         success = self.sheets_manager.add_cv_data(extracted_data, filename)
